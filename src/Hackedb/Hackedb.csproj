@@ -13,8 +13,9 @@
     <Copyright>2022</Copyright>
     <RepositoryType>public</RepositoryType>
     <PackageTags>college, c#, dotnet 5</PackageTags>
-    <Version>0.0.1</Version>
+    <Version>0.0.2</Version>
     <Title>Hacked Database</Title>
+    <PackageReleaseNotes>Use params arguments Version methods contract</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
