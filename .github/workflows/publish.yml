@@ -25,7 +25,7 @@ jobs:
         with:
           dotnet-version: 6.x
 
-      - name: 📦 Build & package the template
+      - name: 📦 Build the project
         run: |
           cd src/Hackedb/
           dotnet restore
@@ -33,4 +33,7 @@ jobs:
           dotnet pack -c '${{ env.BUILD_CONFIGURATION }}'
 
       - name: 🔝 Publish to nuget.org
-        run: dotnet nuget push -s https://api.nuget.org/v3/index.json ${{secrets.NUGET_API_KEY}} bin/Release/*.nupkg
+        uses: brandedoutcast/publish-nuget@v2.5.2
+        with:
+          PROJECT_FILE_PATH: src/Hackedb/Hackedb.csproj
+          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
