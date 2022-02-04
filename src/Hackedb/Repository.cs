@@ -6,7 +6,7 @@ using Hackedb.Contracts;
 
 namespace Hackedb
 {
-    public abstract class Repository<TEntity> : IRepository<TEntity>, IAsyncDisposable
+    public abstract class Repository<TEntity> : IAsyncDisposable
     {
         private readonly IDbChannel _dbChannel;
 
@@ -15,21 +15,19 @@ namespace Hackedb
             _dbChannel = dbChannel;
         }
 
-        public abstract void Add(TEntity entity);
-        public abstract IList<TEntity> GetAll();
         protected abstract TEntity DefaultMap(IDataRecord @record);
 
-        protected async Task Insert(string query, IEnumerable<object> values)
+        protected async Task Insert(string query, params object[] values)
         {
             await Execute($"INSERT {query.TrimStart()}", values);
         }
 
-        protected async Task Update(string query, IEnumerable<object> values)
+        protected async Task Update(string query, params object[] values)
         {
             await Execute($"UPDATE {query.TrimStart()}", values);
         }
 
-        protected async Task Delete(string query, IEnumerable<object> values)
+        protected async Task Delete(string query, params object[] values)
         {
             await Execute($"DELETE {query.TrimStart()}", values);
         }
