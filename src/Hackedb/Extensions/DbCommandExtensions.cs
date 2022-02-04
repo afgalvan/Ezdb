@@ -4,8 +4,9 @@ using System.Data;
 using System.Data.Common;
 using System.Data.SqlTypes;
 using System.Linq;
+using System.Threading.Tasks;
 
-namespace Data.Extensions
+namespace Hackedb.Extensions
 {
     public static class DbCommandExtensions
     {
@@ -27,17 +28,6 @@ namespace Data.Extensions
             placeHolders.ForEach(values, command.AddDbParameter);
         }
 
-        private static void ForEach<TSource, TOther>(this IEnumerable<TSource> source,
-            IEnumerable<TOther> others, Action<TSource, TOther> action)
-        {
-            TSource[] sourceArray = source.ToArray();
-            TOther[]  othersArray = others.ToArray();
-            for (var i = 0; i < Math.Min(sourceArray.Length, othersArray.Length); i++)
-            {
-                action(sourceArray[i], othersArray[i]);
-            }
-        }
-
         private static void AddDbParameter(this DbCommand command, string placeHolder, object value)
         {
             command.Parameters.Add(command.CreateDbParameter(placeHolder, value));
@@ -52,17 +42,17 @@ namespace Data.Extensions
             return dbParameter;
         }
 
-        public static IList<TEntity> ToList<TEntity>(this DbCommand command,
+        public static async Task<IList<TEntity>> ToList<TEntity>(this DbCommand command,
             Func<IDataRecord, TEntity> mapMethod)
         {
-            IList<TEntity> entities = new List<TEntity>();
+            IList<TEntity> result = new List<TEntity>();
 
-            using DbDataReader dbDataReader = command.ExecuteReader();
-            while (dbDataReader.Read())
+            await using DbDataReader dbDataReader = await command.ExecuteReaderAsync();
+            while (await dbDataReader.ReadAsync())
             {
                 try
                 {
-                    entities.Add(mapMethod(dbDataReader));
+                    result.Add(mapMethod(dbDataReader));
                 }
                 catch (SqlNullValueException)
                 {
@@ -70,7 +60,7 @@ namespace Data.Extensions
                 }
             }
 
-            return entities;
+            return result;
         }
     }
 }

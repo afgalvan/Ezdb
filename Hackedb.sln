@@ -5,13 +5,7 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{565C6579-A7B1-4F06-8008-6FA5D45BAAE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "src\Entities\Entities.csproj", "{0BDCE558-DA7D-4F99-AF75-89BFAF674D81}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "src\Data\Data.csproj", "{ADEDAD62-35E2-4EA8-BF2C-872EDE4471A1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "src\Logic\Logic.csproj", "{DA375015-E820-46A7-B442-5997A1930FD4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "src\Presentation\Presentation.csproj", "{F042757F-E426-41CA-993D-DB4DEC4D834A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackedb", "src\Hackedb\Hackedb.csproj", "{ADEDAD62-35E2-4EA8-BF2C-872EDE4471A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

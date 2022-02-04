@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <Authors>Andres Galvan</Authors>
+    <PackageProjectUrl>https://github.com/upen-source/hackedb</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/upen-source/hackedb</RepositoryUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Language>en-US</Language>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>Experimental library for executing basic database queries from simple methods using raw ADO.NET. Just for educational purposes </Description>
+    <Copyright>2022</Copyright>
+    <RepositoryType>public</RepositoryType>
+    <PackageTags>college, c#, dotnet 5</PackageTags>
+    <Version>0.0.1</Version>
+    <Title>Hacked Database</Title>
+  </PropertyGroup>
+
+</Project>
