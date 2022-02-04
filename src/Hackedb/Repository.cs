@@ -49,6 +49,7 @@ namespace Hackedb
         public async ValueTask DisposeAsync()
         {
             await _dbChannel.Close();
+            GC.SuppressFinalize(this);
         }
     }
 }
