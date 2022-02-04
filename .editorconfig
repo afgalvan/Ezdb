@@ -50,7 +50,3 @@ end_of_line = lf
 # Makefiles
 [Makefile]
 indent_style = tab
-
-# Default Severity for all .NET Code Style rules below
-[*.{cs,csx,cake,vb,vbx}]
-dotnet_analyzer_diagnostic.severity = warning

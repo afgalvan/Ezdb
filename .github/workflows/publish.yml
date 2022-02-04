@@ -6,6 +6,9 @@ on:
     branches:
       - deploy
 
+env:
+  BUILD_CONFIGURATION: 'Release'
+
 jobs:
   publish:
     name: Publish on NuGet
@@ -17,13 +20,20 @@ jobs:
       - name: ⬇️ Checkout repository
         uses: actions/checkout@v2
 
-      - name: 🆖 Setup NuGet
-        uses: nuget/setup-nuget@v1
+      - name: 🚧 Setup .NET
+        uses: actions/setup-dotnet@v1
         with:
-          nuget-version: "5.x"
+          dotnet-version: 6.x
 
-      - name: 📦 Package the template
-        run: nuget pack src/Hackedb/Hackedb.csproj
+      - name: 📦 Build the project
+        run: |
+          cd src/Hackedb/
+          dotnet restore
+          dotnet build --configuration '${{ env.BUILD_CONFIGURATION }}'
+          dotnet pack -c '${{ env.BUILD_CONFIGURATION }}'
 
       - name: 🔝 Publish to nuget.org
-        run: nuget push Hackedb.*.nupkg -src https://api.nuget.org/v3/index.json ${{secrets.NUGET_API_KEY}}
+        uses: brandedoutcast/publish-nuget@v2.5.2
+        with:
+          PROJECT_FILE_PATH: src/Hackedb/Hackedb.csproj
+          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
