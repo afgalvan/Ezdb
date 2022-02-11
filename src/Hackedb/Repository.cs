@@ -32,13 +32,18 @@ namespace Hackedb
             await Execute($"DELETE {query.TrimStart()}", values);
         }
 
+        protected async Task<IList<TEntity>> Select(string query, params object[] values)
+        {
+            return await Select(query, DefaultMap, values);
+        }
+
         private async Task Execute(string query, IEnumerable<object> values)
         {
             await _dbChannel.ExecuteNonQuery(query, values);
         }
 
         protected async Task<IList<TEntity>> Select(string query,
-            IEnumerable<object>? values = null, Func<IDataRecord, TEntity>? mapMethod = null)
+            Func<IDataRecord, TEntity>? mapMethod = null, params object[] values)
         {
             return await _dbChannel.ExecuteReader($"SELECT {query.TrimStart()}",
                 mapMethod ?? DefaultMap, values);
