@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Hackedb.Contracts;
 using Hackedb.Extensions;
 
-namespace Hackedb
+namespace Hackedb.Core
 {
     public class DbChannel : IDbChannel
     {
